@@ -1,65 +1,55 @@
-# go-to-fuzzy README
+# Go to Fuzzy
 
-This is the README for your extension "go-to-fuzzy". After writing up a brief description, we recommend including the following sections.
+<p align="center">
+  <img alt="Extension in action" src="https://github.com/rbaumier/vscode-go-to-fuzzy/blob/master/assets/icon.png?raw=true" width="200">
+</p>
 
-## Features
+## 👓 What
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Go-to-Fuzzy is a VSCode extension making fuzzy search/go-to inside a file possible.
 
-For example if there is an image subfolder under your extension project workspace:
+<p align="center">
+  <img alt="Extension in action" src="https://github.com/rbaumier/vscode-go-to-fuzzy/blob/master/assets/demo.gif?raw=true">
+</p>
 
-\!\[feature X\]\(images/feature-x.png\)
+## ✅ Requirements
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Linux/MacOS
+- [The awesome fzf](https://github.com/junegunn/fzf) available
 
-## Requirements
+## Installation
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+[Install from the marketplace!](https://marketplace.visualstudio.com/items?itemName=rbaumier.go-to-fuzzy)
 
-## Extension Settings
+## 🚀 Usage
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### Set a keyboard shortcut via:
 
-For example:
+1. Open **Command Palette** (⌘/Ctrl + Shift + p)
+2. Choose **"Preferences: Open Keyboard Shortcuts"**
+3. Search for **"go-to-fuzzy.find"**
+4. Set a **keybinding**
 
-This extension contributes the following settings:
+### Or, if you just want to try
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+1. Open Command Palette **(⌘/Ctrl + Shift + p)**
+2. Choose **"Go to Fuzzy: find"**
 
-## Known Issues
+## 🤔 Motivations
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Without an extension, there is several ways to go to a targeted pattern in the active file, but I find them to be suboptimal:
 
-## Release Notes
+- **Built-in search**
+  - 👎 only show one result at a time, making it painful to cycle through them
+  - 👎 no fuzzy: you have to type an exact match (or use a regex for wildcards)
+- **Symbols and references**
+  - 👍 fuzzy works great
+  - 👎 only fetch symbols and references (duh!)
+  - 👎 heavily dependent on language integrations
+- **Scroll manually:** good enough on small files but can be quite painful with big ones
 
-Users appreciate release notes as you update your extension.
+## ❔ FAQ
 
-### 1.0.0
+### Why do you show the pattern at the beginning of each line? This is annoying!
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Yeah, sorry about that. We show it because otherwise VSCode will rearrange the search results by _"what matches the most the provided pattern"_. We remove this behaviour by using the pattern as the result item `label`, which is the only matchable attribute by default.

@@ -1,40 +1,61 @@
 {
   "name": "go-to-fuzzy",
-	"displayName": "Go to Fuzzy",
-	"description": "Go to matching chunks in file using fzf",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.55.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        "onCommand:go-to-fuzzy.helloWorld"
-	],
-	"main": "./extension.js",
-	"contributes": {
-		"commands": [{
-            "command": "go-to-fuzzy.helloWorld",
-            "title": "Hello World"
-
-		}]
-	},
-	"scripts": {
-		"lint": "eslint .",
-		"pretest": "yarn run lint",
-		"test": "node ./test/runTest.js"
-	},
-	"devDependencies": {
-        "@types/vscode": "^1.55.0",
-        "@types/glob": "^7.1.3",
-        "@types/mocha": "^8.0.4",
-        "@types/node": "^12.11.7",
-        "eslint": "^7.19.0",
-        "glob": "^7.1.6",
-        "mocha": "^8.2.1",
-        "typescript": "^4.1.3",
-        "vscode-test": "^1.5.0"
-    }
-
+  "displayName": "Go to Fuzzy in current file",
+  "description": "go to fuzzy matching chunks in current file",
+  "publisher": "rbaumier",
+  "version": "0.0.2",
+  "homepage": "https://github.com/rbaumier/vscode-go-to-fuzzy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rbaumier/vscode-go-to-fuzzy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rbaumier/vscode-go-to-fuzzy/issues"
+  },
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#98cedd",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.55.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:go-to-fuzzy.find"
+  ],
+  "main": "./out/main.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "go-to-fuzzy.find",
+        "title": "Go to Fuzzy: find"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "yarn run lint",
+    "test": "node ./test/runTest.js",
+    "vscode:prepublish": "npm run -S esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/main.js --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run -S esbuild-base -- --sourcemap",
+    "test-compile": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.4",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.55.0",
+    "eslint": "^7.19.0",
+    "glob": "^7.1.6",
+    "mocha": "^8.2.1",
+    "typescript": "^4.1.3",
+    "vscode-test": "^1.5.0"
+  },
+  "dependencies": {
+    "shell-quote": "^1.7.2"
+  }
 }
