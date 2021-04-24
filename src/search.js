@@ -94,7 +94,7 @@ function findInDocument(pattern) {
       return Promise.resolve();
     }
     if (!stdout) {
-      return null;
+      return Promise.resolve();
     }
     return parseSearchOutput(stdout, pattern);
   });
